@@ -299,7 +299,9 @@ export class StarknetProvider extends BaseProvider {
         nextSource => !lastSources.find(lastSource => lastSource.contract === nextSource.contract)
       );
 
-      sourcesQueue.push(...newSources);
+      for (let i = 0; i < newSources.length; i++) {
+        sourcesQueue.push(newSources[i]);
+      }
       lastSources = nextSources;
     }
 
@@ -318,7 +320,9 @@ export class StarknetProvider extends BaseProvider {
         continuation_token: continuationToken
       });
 
-      events.push(...result.events);
+      for (let i = 0; i < result.events.length; i++) {
+        events.push(result.events[i]);
+      }
 
       continuationToken = result.continuation_token;
     } while (continuationToken);
@@ -357,7 +361,9 @@ export class StarknetProvider extends BaseProvider {
         continuation_token: continuationToken
       });
 
-      events.push(...result.events);
+      for (let i = 0; i < result.events.length; i++) {
+        events.push(result.events[i]);
+      }
 
       continuationToken = result.continuation_token;
     } while (continuationToken);
@@ -377,7 +383,9 @@ export class StarknetProvider extends BaseProvider {
         toBlock,
         source.contract
       );
-      events.push(...addressEvents);
+      for (let i = 0; i < addressEvents.length; i++) {
+        events.push(addressEvents[i]);
+      }
     }
 
     return events;
